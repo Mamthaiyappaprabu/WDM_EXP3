@@ -1,5 +1,5 @@
 ### EX3 Implementation of GSP Algorithm In Python
-### DATE: 
+### DATE: 14/09/2024
 ### AIM: To implement GSP Algorithm In Python.
 ### Description:
 The Generalized Sequential Pattern (GSP) algorithm is a data mining technique used for discovering frequent patterns within a sequence database. It operates by identifying sequences that frequently occur together. GSP works by employing a depth-first search strategy to explore and extract frequent patterns efficiently.
@@ -43,16 +43,24 @@ from collections import defaultdict
 from itertools import combinations
 # Function to generate candidate k-item sequences
 def generate_candidates(dataset, k):
-
-
-    /WRITE YOUR CODE HERE/
-
+  candidates = defaultdict(int)
+  for sequence in dataset:
+    for itemset in combinations(sequence, k):
+      candidates[itemset] += 1
+  return {item: support for item, support in candidates.items() if support >= min_support}
 
 #Function to perform GSP algorithm
 def gsp(dataset, min_support):
-
-
-  /WRITE YOUR CODE HERE/
+    frequent_pattern = defaultdict(int)
+    k = 1
+    sequence = dataset
+    while True:
+      candidates = generate_candidates(sequence, k)
+      if not candidates:
+        break
+      frequent_pattern.update(candidates)
+      k += 1
+    return frequent_pattern
 
 
 #Example dataset for each category
@@ -114,7 +122,7 @@ def visualize_patterns_line(result, category):
         support = list(result.values())
 
         plt.figure(figsize=(10, 6))
-        plt.plot([str(pattern) for pattern in patterns], support, marker='o', linestyle='-', color='blue')
+        plt.plot([str(pattern) for pattern in patterns], support, marker='o', linestyle='-', color='green')
         plt.xlabel('Patterns')
         plt.ylabel('Support Count')
         plt.title(f'Frequent Sequential Patterns - {category}')
@@ -130,6 +138,9 @@ visualize_patterns_line(bottom_wear_result, 'Bottom Wear')
 visualize_patterns_line(party_wear_result, 'Party Wear')
 ```
 ### Output:
+![image](https://github.com/user-attachments/assets/99d4e149-3f4a-4f13-a66e-be8dacc7e31f)
 
+![image](https://github.com/user-attachments/assets/703dfbc3-b185-4ce8-a211-4decacf86116)
+![image](https://github.com/user-attachments/assets/a53cfa52-87c8-4d81-a1bc-e65e56d80938)
 
 ### Result:
