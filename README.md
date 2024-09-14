@@ -36,6 +36,7 @@ for each wear category.</p>
 <p align="justify">
 8. Visulaize the sequence patterns using matplotlib.
 </p>
+
 ### Program:
 
 ```python
@@ -144,3 +145,4 @@ visualize_patterns_line(party_wear_result, 'Party Wear')
 ![image](https://github.com/user-attachments/assets/a53cfa52-87c8-4d81-a1bc-e65e56d80938)
 
 ### Result:
+Thus the implementation of the GSP algorithm in python has been successfully executed.
